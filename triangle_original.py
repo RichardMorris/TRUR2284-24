@@ -16,22 +16,26 @@ bob.getscreen().setup(width=600, height=600, startx=0, starty=0)
 
 colours = ["blue","red","magenta","black","yellow"]
 
+start_x = -250
+start_y = -250
+start_length = 500
 bob.speed(0)
 bob.penup()
-bob.goto(-250,-250)
+bob.goto(start_x,start_y)
 bob.pendown()
-start_length = 500
-def triangle(turtle,start,stop,colour):
+def triangle(turtle,start,stop):
     if stop == 0:
         return
-    colour = colours[random.randint(0,4)]
+    # improve flexibility by not hard coding array size
+    colour = colours[random.randint(0,len(colours)-1)]
     turtle.color(colour)
+
     for x in range(stop):
         for i in range(3):
             turtle.forward(start)
             turtle.left(120)
-            triangle(turtle,start/2,stop-1,colour)
+            triangle(turtle,start/2,stop-1)
         return
 
-triangle(bob,start_length,6,colours)
+triangle(bob,start_length,6)
 bob.getscreen().mainloop()
