@@ -9,8 +9,15 @@ colours = ["blue","red","magenta","black","yellow"]
 Triangle(100, -250, 150, 2, SequenceColourGenerator(["pink","green"])).draw(bob)
 
 
-tri = Triangle(500, -250, -250, 6, RandomColourGenerator(colours))
+tri = Triangle(250, 0, 0, 6, RandomColourGenerator(colours))
 tri.draw(bob)
+bob.left(90)
+tri.draw(bob)
+bob.left(90)
+tri.draw(bob)
+bob.left(90)
+tri.draw(bob)
+bob.left(90)
 
 tri2 = Triangle(250, -250, -250, 1, SingleColourGenerator("green"))
 tri2.draw(bob)
