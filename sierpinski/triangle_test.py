@@ -1,5 +1,5 @@
 import unittest
-from Triangle import *
+from sierpinski.Triangle import *
 
 class TurtleMock:
     def __init__(self):

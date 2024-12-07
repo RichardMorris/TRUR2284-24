@@ -1,0 +1,6 @@
+Feature: Creation of a blank scene
+
+  Scenario: start up creates a blank screen
+     Given the program is running
+      When the program starts
+      Then a bank scene of size 40x20 is created
