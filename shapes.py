@@ -22,9 +22,6 @@ class Screen:
         self.height = height
         self.cells = [[' ' for _ in range(width)] for _ in range(height)]
 
-    def draw_at(self, x, y, shape):
-        shape.draw_at(self, x, y)
-
     def __str__(self):
         return '\n'.join([''.join(row) for row in self.cells]) + '\n'
     
@@ -33,15 +30,17 @@ class Shape:
         pass
 
 class Rectangle(Shape):
-    def __init__(self, width, height):
+    def __init__(self, width, height, x, y):
         self.width = width
         self.height = height
+        self.x = x
+        self.y = y
 
-    def draw_at(self, screen, x, y):
+    def draw(self, screen):
         for i in range(self.width):
             for j in range(self.height):
-                if x + i < screen.width and y + j < screen.height:
-                    screen.cells[y + j][x + i] = '*'
+                if self.x + i < screen.width and self.y + j < screen.height:
+                    screen.cells[self.y + j][self.x + i] = '*'
                     
                     
 class Shapes:
@@ -57,12 +56,18 @@ class Shapes:
 
     def draw(self):
         for shape in self.shapes:
-            shape.draw_at(self.screen, shape.x, shape.y)
+            shape.draw(self.screen)
         print(self.screen)
 
-    def add_shape(self, shape_name, size, x, y):
+    def get_cells(self):
+        lines = []
+        for row in self.screen.cells:
+            lines.append(''.join(row))
+        return lines
+    
+    def add_shape(self, shape_name, w, h, x, y):
         if shape_name == 'rectangle':
-            self.shapes.append(Rectangle(size, size, x, y))
+            self.shapes.append(Rectangle(w, h, x, y))
         else:
             print("Unknown shape")
 
