@@ -1,5 +1,5 @@
 from turtle import Turtle
-from sierpinski.Triangle import *
+from Triangle import *
 
 bob = Turtle()
 bob.getscreen().setup(width=600, height=600, startx=0, starty=0)
