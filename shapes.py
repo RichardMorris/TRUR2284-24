@@ -17,7 +17,9 @@ List of tests:
 """
 
 class Screen:
-    def __init__(self, width, height):
+    def __init__(self, width: int, height :int):
+        assert width > 0
+        assert height > 0
         self.width = width
         self.height = height
         self.cells = [[' ' for _ in range(width)] for _ in range(height)]
@@ -44,7 +46,7 @@ class Rectangle(Shape):
                     
                     
 class Shapes:
-    """The Shapes class servess as a Faced for the whole system.
+    """The Shapes class servess as a facade for the whole system.
     It contains a screen and a list of shapes that can be drawn on the screen.
     And provides methods call by the UI to add shapes and draw them on the screen."""
 

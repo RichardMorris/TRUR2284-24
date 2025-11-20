@@ -22,3 +22,5 @@ class TestScreen(unittest.TestCase):
         self.assertEqual(screen.width, 5)
         self.assertEqual(screen.height, 4)
         self.assertEqual(str(screen), (" " * 5 + "\n") * 4)
+
+    
