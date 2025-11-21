@@ -60,9 +60,12 @@ class Shapes:
         self.width = self.screen.width
         self.height = self.screen.height
 
-    def draw(self):
+    def render(self):
         for shape in self.shapes:
             shape.draw(self.screen)
+
+    def draw(self):
+        self.render()
         print(self.screen,end="")
 
     def get_cells(self):

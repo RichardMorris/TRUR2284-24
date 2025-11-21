@@ -144,4 +144,8 @@ class TestShapes(unittest.TestCase):
         s = f.getvalue()
         self.assertEqual(s, (" " * 40 + "\n") * 20)
 
+    def test_add_rectangle(self):
+        self.shapes.add_shape("rect",10,10,15,5)
+        self.shapes.render()
+
 
