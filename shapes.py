@@ -63,7 +63,7 @@ class Shapes:
     def draw(self):
         for shape in self.shapes:
             shape.draw(self.screen)
-        print(self.screen)
+        print(self.screen,end="")
 
     def get_cells(self):
         lines = []

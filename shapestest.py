@@ -1,6 +1,8 @@
 from cmath import rect
 import unittest
 from shapes import *
+import io
+from contextlib import redirect_stdout
 
 class TestScreen(unittest.TestCase):
 
@@ -124,5 +126,22 @@ class TestStars(unittest.TestCase):
     # erronous test
     def test_stars_method_produces_an_empty_string_with_one_argument(self):
         self.assertEqual(stars(-1), '')
+
+class TestShapes(unittest.TestCase):
+    def setUp(self):
+        self.shapes = Shapes()
+    
+    def test_creation(self):
+        self.assertEqual(self.shapes.screen.width, 40)
+        self.assertEqual(self.shapes.screen.height, 20)
+        self.assertEqual(len(self.shapes.screen.cells), 20)
+        self.assertEqual(len(self.shapes.shapes), 0)
+
+    # Uses the contextLib to redirect stdout
+    def test_draw_with_a_blank_screen(self):
+        with redirect_stdout(io.StringIO()) as f:
+            self.shapes.draw()
+        s = f.getvalue()
+        self.assertEqual(s, (" " * 40 + "\n") * 20)
 
 
