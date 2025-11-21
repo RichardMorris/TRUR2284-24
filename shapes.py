@@ -41,7 +41,7 @@ class Rectangle(Shape):
     def draw(self, screen):
         for i in range(self.width):
             for j in range(self.height):
-                if self.x + i < screen.width and self.y + j < screen.height:
+                if self.x + i < screen.width and self.x + i >= 0 and self.y + j < screen.height and self.y + j >=0:
                     screen.cells[self.y + j][self.x + i] = '*'
                     
                     

@@ -1,3 +1,4 @@
+from cmath import rect
 import unittest
 from shapes import *
 
@@ -14,26 +15,103 @@ class TestScreen(unittest.TestCase):
         screen =  Screen(5, 10)
         self.assertEqual(str(screen), (" " * 5 + "\n") * 10)
 
-class Test_Screen_With_Rectangle(unittest.TestCase):
-    def test_drawing_a_rectangle_on_an_screen_larger_than_the_rectangle_fills_in_stars(self):
-        # arrange
-        screen = Screen(5, 5)
-        rect = Rectangle(3, 2, 1, 1)
-        # act
-        rect.draw(screen)
-        # assert
-        expected = (
-            "     \n"
-            " *** \n"
-            " *** \n"
-            "     \n"
-            "     \n"
-        )
-        self.assertEqual(str(screen), expected)
+class TestRectangle(unittest.TestCase):
+        def test_create_a_rectangle(self):
+            foo = Rectangle(3, 2, 1, 1)
+            foo.width == 3
+            foo.height == 2
+            foo.x == 1
+            foo.y == 1
+    
+        def test_rectangle_on_enclosing_screen_draws_fills_in_stars(self):
+            # arrange
+            screen = Screen(5, 5)
+            rect = Rectangle(3, 2, 1, 1)
+            # act
+            rect.draw(screen)
+            # assert
+            expected = (
+                "     \n"
+                " *** \n"
+                " *** \n"
+                "     \n"
+                "     \n"
+            )
+            self.assertEqual(str(screen), expected)
+
+        def test_rectangle_draw_overlapping_right_edge(self):
+            # arrange
+            screen = Screen(5, 5)
+            rect = Rectangle(7, 2, 1, 1)
+            # act
+            rect.draw(screen)
+            # assert
+            expected = (
+                "     \n"
+                " ****\n"
+                " ****\n"
+                "     \n"
+                "     \n"
+            )
+            self.assertEqual(str(screen), expected)
+
+        def test_rectangle_draw_overlapping_left_edge(self):
+            # arrange
+            screen = Screen(5, 5)
+            rect = Rectangle(5, 2, -1, 1)
+            # act
+            rect.draw(screen)
+            # assert
+            expected = (
+                "     \n"
+                "**** \n"
+                "**** \n"
+                "     \n"
+                "     \n"
+            )
+            self.assertEqual(str(screen), expected)
+
+        def test_rectangle_draw_overlapping_top_edge(self):
+            # arrange
+            screen = Screen(5, 5)
+            rect = Rectangle(3, 2, 1, -1)
+            # act
+            rect.draw(screen)
+            print()
+            print("-----")
+            print(screen)
+            # assert
+            expected = (
+                " *** \n"
+                "     \n"
+                "     \n"
+                "     \n"
+                "     \n"
+            )
+            self.assertEqual(str(screen), expected)
+
+        def test_rectangle_draw_overlapping_bottom_edge(self):
+            # arrange
+            screen = Screen(5, 5)
+            rect = Rectangle(3, 2, 1, 4)
+            # act
+            rect.draw(screen)
+            print()
+            print("-----")
+            print(screen)
+            # assert
+            expected = (
+                "     \n"
+                "     \n"
+                "     \n"
+                "     \n"
+                " *** \n"
+            )
+            self.assertEqual(str(screen), expected)
 
 class TestStars(unittest.TestCase):
 
-    #
+    # normal value tests
     def test_stars_produces_a_string_with_works_with_positive_arguments(self):
         self.assertEqual(stars(1), '*')
         self.assertEqual(stars(2), '**')
@@ -48,5 +126,3 @@ class TestStars(unittest.TestCase):
         self.assertEqual(stars(-1), '')
 
 
-if __name__ == '__main__':
-    unittest.main()
