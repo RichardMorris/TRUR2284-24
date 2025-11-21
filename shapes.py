@@ -27,6 +27,11 @@ class Screen:
     def __str__(self):
         return '\n'.join([''.join(row) for row in self.cells]) + '\n'
     
+    def plot(self,x,y):
+        if x < self.width and x >= 0 and y < self.height and y >=0:
+                    self.cells[y][x] = '*'
+
+    
 class Shape:
     def draw_at(self, screen, x, y):
         pass
@@ -41,8 +46,7 @@ class Rectangle(Shape):
     def draw(self, screen):
         for i in range(self.width):
             for j in range(self.height):
-                if self.x + i < screen.width and self.x + i >= 0 and self.y + j < screen.height and self.y + j >=0:
-                    screen.cells[self.y + j][self.x + i] = '*'
+                screen.plot(self.x + i,self.y + j)
                     
                     
 class Shapes:
