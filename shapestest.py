@@ -25,6 +25,22 @@ class TestRectangle(unittest.TestCase):
             foo.x == 1
             foo.y == 1
     
+        def test_rectangle_outside_screen_draws_nothing(self):
+            # arrange
+            screen = Screen(5, 5)
+            rect = Rectangle(3, 2, 6, 6)
+            # act
+            rect.draw(screen)
+            # assert
+            expected = (
+                "     \n"
+                "     \n"
+                "     \n"
+                "     \n"
+                "     \n"
+            )
+            self.assertEqual(str(screen), expected)
+            
         def test_rectangle_on_enclosing_screen_draws_fills_in_stars(self):
             # arrange
             screen = Screen(5, 5)
